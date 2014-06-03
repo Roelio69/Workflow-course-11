@@ -62,9 +62,13 @@ while stop == 1:
     else:
         screen.addstr(9,4, "5 - Run all of the above", n)
     if pos == 6:
-        screen.addstr(10,4, "6 - Exit", h)
+        screen.addstr(10,4, "6 - Run a selection", h)
+    else:    
+        screen.addstr(10,4, "6 - Run a selection", n)
+    if pos == 7:
+        screen.addstr(11,4, "7 - Exit", h)
     else:
-        screen.addstr(10,4, "6 - Exit", n)
+        screen.addstr(11,4, "7 - Exit", n)
     screen.refresh()
 
     
@@ -82,6 +86,9 @@ while stop == 1:
         pos = 5
     elif x == ord('6'):
         pos = 6
+    elif x == ord('7'):
+        pos = 7
+
 
     # Gene Finder option (position 1)
     if pos == 1 and x == ord('\n'):
@@ -95,14 +102,15 @@ while stop == 1:
         userInput = screen.getstr(6, 10, 60)
         userOutput = screen.getstr(11, 10, 60)
 	try:
-		firstClass.filterLPs(userInput, userOutput)
-		screen.clear()
-		screen.border(0)
-		screen.addstr(2, 4, "Gene filter succes!")
-		screen.refresh()
-		time.sleep(3)
+            screen.addstr(4, 4, "Please enter a input file for Gene Filter")
+            firstClass.filterLPs(userInput, userOutput)
+            screen.clear()
+            screen.border(0)
+            screen.addstr(2, 4, "Gene filter succes!")
+            screen.refresh()
+            time.sleep(3)
 	except:
-		show_error("Invalid file name. Try again.")
+	    show_error("Invalid file name. Try again.")
 
     # Find Orthologues option (position 2)
     if pos == 2 and x == ord('\n'):
@@ -184,16 +192,34 @@ while stop == 1:
         userInput = screen.getstr(6, 10, 60)
         userOutput = "GF_output"
 	try:
-		firstClass.filterLPs(userInput, userOutput)
-		secondClass = class2()
-		userOutput2 = "FO_output"
-		secondClass.zoekOrthologen(userOutput+".txt", userOutput2)
+                firstClass.filterLPs(userInput, userOutput)
+
+                screen.clear()
+	        screen.border(0)
+                screen.addstr(2, 2, "25% complete...")
+                screen.refresh()
+
+	        secondClass = class2()
+	        userOutput2 = "FO_output"
+                secondClass.zoekOrthologen(userOutput+".txt", userOutput2)
+
+                screen.clear()
+	        screen.border(0)
+                screen.addstr(2, 2, "50% complete...")
+                screen.refresh()
+
 		thirdClass = class3()
 		userOutput3 = "MS_output_WCFS1_glc1"
 		userOutput4 = "MS_output_NC8_glc1"
 		userOutput5 = "MS_output_WCFS1_glc2"
 		userOutput6 = "MS_output_NC8_glc2"
 		thirdClass.motifSearch(userOutput2+".txt", userOutput3, userOutput4, userOutput5, userOutput6)
+
+                screen.clear()
+	        screen.border(0)
+                screen.addstr(2, 2, "75% complete...")
+                screen.refresh()
+
 		screen.clear()
 		screen.border(0)
 		screen.addstr(2, 4, "Run all the scripts succes!")
@@ -201,13 +227,21 @@ while stop == 1:
 		time.sleep(3)
 	except:
 		show_error("Invalid file name. Try again.")
-    # stop program option (position 6)
+    # stop program option (position 7)
+    
     if pos == 6 and x == ord('\n'):
+        screen.clear()
+        screen.border(0)
+        screen.addstr(2, 2, "Selection: ")
+        
+        screen.refresh()
+
+    if pos == 7 and x == ord('\n'):
         stop = 0
         
     # highlight returns to the top of the list
     elif x == 258:
-        if pos < 6:
+        if pos < 7:
             pos += 1
         else:
             pos = 1
@@ -217,7 +251,7 @@ while stop == 1:
         if pos > 1:
             pos += -1
         else:
-            pos = 6
+            pos = 7
             
     # error code for pushing key besides up/down arrow key
     #elif x != ord('\n'):
