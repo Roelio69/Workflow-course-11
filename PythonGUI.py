@@ -194,7 +194,7 @@ while stop == 1:
         userInput = screen.getstr(6, 10, 60)
         userOutput = "GF_output"
 	try:
-<<<<<<< HEAD
+
                 firstClass.filterLPs(userInput, userOutput)
 
                 screen.clear()
@@ -211,20 +211,6 @@ while stop == 1:
                 screen.addstr(2, 2, "50% complete...")
                 screen.refresh()
 
-=======
-		firstClass.filterLPs(userInput, userOutput)
-		screen.clear()
-		screen.border(0)
-        	screen.addstr(2, 2, "25% complete...")
-		screen.refresh()
-		secondClass = class2()
-		userOutput2 = "FO_output"
-		secondClass.zoekOrthologen(userOutput+".txt", userOutput2)
-		screen.clear()
-		screen.border(0)
-        	screen.addstr(2, 2, "50% complete...")
-		screen.refresh()
->>>>>>> d82218a676f8e825e9b0b96ee33184f671a63a72
 		thirdClass = class3()
 		userOutput3 = "MS_output_WCFS1_glc1"
 		userOutput4 = "MS_output_NC8_glc1"
@@ -255,13 +241,10 @@ while stop == 1:
 		time.sleep(3)
 	except:
 		show_error("Invalid file name. Try again.")
-<<<<<<< HEAD
+
     # stop program option (position 7)
     
-=======
 
-    # stop program option (position 6)
->>>>>>> d82218a676f8e825e9b0b96ee33184f671a63a72
     if pos == 6 and x == ord('\n'):
         screen.clear()
         screen.border(0)
