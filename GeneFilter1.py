@@ -1,3 +1,4 @@
+# filters genes containing numeric information
 class class1():
     def filterLPs(self, userInput, userOutput):
         bestand = open(userInput, "r")
