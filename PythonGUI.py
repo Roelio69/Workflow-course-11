@@ -160,6 +160,7 @@ while stop == 1:
 		time.sleep(3)
 	except:
 		show_error("Invalid file name. Try again.")
+
     # MEME option (position 4)
     if pos == 4 and x == ord('\n'):
         screen.clear()
@@ -167,11 +168,11 @@ while stop == 1:
 	screen.addstr(2, 2, "This is MEME")
 	screen.addstr(4, 4, "Please enter a input file for MEME")
 	screen.addstr(9, 4, "Please fill in all the parameters for MEME")
-	screen.addstr(10, 4, "Examples: -dna -nmotif")
+	screen.addstr(10, 4, "Examples: -dna -nmotif -minw -maxw -mod -minsites -maxsites")
 	screen.refresh()
 	fourthClass = class4()
 	userInput = screen.getstr(6, 10, 60)
-	Parameters = screen.getstr(12, 10, 60)
+	Parameters = screen.getstr(12, 10, 120)
 	try:
 		fourthClass.callMEME(userInput, Parameters)
 		screen.clear()
@@ -181,6 +182,7 @@ while stop == 1:
 		time.sleep(3)
 	except:
 		show_error("Invalid file name. Try again.")
+
     # running all the scripts option (position 5)
     if pos == 5 and x == ord('\n'):
         screen.clear()
@@ -192,6 +194,7 @@ while stop == 1:
         userInput = screen.getstr(6, 10, 60)
         userOutput = "GF_output"
 	try:
+<<<<<<< HEAD
                 firstClass.filterLPs(userInput, userOutput)
 
                 screen.clear()
@@ -208,6 +211,20 @@ while stop == 1:
                 screen.addstr(2, 2, "50% complete...")
                 screen.refresh()
 
+=======
+		firstClass.filterLPs(userInput, userOutput)
+		screen.clear()
+		screen.border(0)
+        	screen.addstr(2, 2, "25% complete...")
+		screen.refresh()
+		secondClass = class2()
+		userOutput2 = "FO_output"
+		secondClass.zoekOrthologen(userOutput+".txt", userOutput2)
+		screen.clear()
+		screen.border(0)
+        	screen.addstr(2, 2, "50% complete...")
+		screen.refresh()
+>>>>>>> d82218a676f8e825e9b0b96ee33184f671a63a72
 		thirdClass = class3()
 		userOutput3 = "MS_output_WCFS1_glc1"
 		userOutput4 = "MS_output_NC8_glc1"
@@ -222,13 +239,29 @@ while stop == 1:
 
 		screen.clear()
 		screen.border(0)
-		screen.addstr(2, 4, "Run all the scripts succes!")
+        	screen.addstr(2, 2, "75% complete...")
+		screen.refresh()
+		fourthClass = class4()
+		Parameters = "-dna -nmotifs 3 -minw 20 -maxw 50 -mod zoops -minsites 150 -maxsites 745 "
+		fourthClass.callMEME(userOutput3+".txt", Parameters)
+		fourthClass.callMEME(userOutput4+".txt", Parameters)
+		fourthClass.callMEME(userOutput5+".txt", Parameters)
+		fourthClass.callMEME(userOutput6+".txt", Parameters)
+		screen.clear()
+		screen.border(0)
+		screen.addstr(2, 2, "100% complete!")
+		screen.addstr(4, 4, "Run all the scripts succes!")
 		screen.refresh()
 		time.sleep(3)
 	except:
 		show_error("Invalid file name. Try again.")
+<<<<<<< HEAD
     # stop program option (position 7)
     
+=======
+
+    # stop program option (position 6)
+>>>>>>> d82218a676f8e825e9b0b96ee33184f671a63a72
     if pos == 6 and x == ord('\n'):
         screen.clear()
         screen.border(0)
@@ -254,9 +287,9 @@ while stop == 1:
             pos = 7
             
     # error code for pushing key besides up/down arrow key
-    #elif x != ord('\n'):
-    #    curses.flash()
-    #    show_error('Invalid Key, try the up and down arrow keys...')
+    elif x != ord('\n'):
+        curses.flash()
+        show_error('Invalid Key, try the up and down arrow keys...')
 
 
 curses.endwin()
