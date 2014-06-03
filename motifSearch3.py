@@ -1,3 +1,4 @@
+# searches for possible sigma 70 binding site within sequences from bestand 4 till 7
 import re
 class class3():
     def motifSearch(self, userInput, userOutput, userOutput2, userOutput3, userOutput4):
