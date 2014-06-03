@@ -62,9 +62,13 @@ while stop == 1:
     else:
         screen.addstr(9,4, "5 - Run all of the above", n)
     if pos == 6:
-        screen.addstr(10,4, "6 - Exit", h)
+        screen.addstr(10,4, "6 - Script selection", h)
     else:
-        screen.addstr(10,4, "6 - Exit", n)
+        screen.addstr(10,4, "6 - Script selection", n)
+    if pos == 7:
+        screen.addstr(10,4, "7 - Exit", h)
+    else:
+        screen.addstr(10,4, "7 - Exit", n)
     screen.refresh()
 
     
@@ -186,7 +190,6 @@ while stop == 1:
         userInput = screen.getstr(6, 10, 60)
         userOutput = "GF_output"
 	try:
-<<<<<<< HEAD
 		firstClass.filterLPs(userInput, userOutput)
 		screen.clear()
 		screen.border(0)
@@ -199,25 +202,6 @@ while stop == 1:
 		screen.border(0)
         	screen.addstr(2, 2, "50% complete...")
 		screen.refresh()
-=======
-
-                firstClass.filterLPs(userInput, userOutput)
-
-                screen.clear()
-	        screen.border(0)
-                screen.addstr(2, 2, "25% complete...")
-                screen.refresh()
-
-	        secondClass = class2()
-	        userOutput2 = "FO_output"
-                secondClass.zoekOrthologen(userOutput+".txt", userOutput2)
-
-                screen.clear()
-	        screen.border(0)
-                screen.addstr(2, 2, "50% complete...")
-                screen.refresh()
-
->>>>>>> eb09e70ac774e83ae72392ac6196930c669ce29d
 		thirdClass = class3()
 		userOutput3 = "MS_output_WCFS1_glc1"
 		userOutput4 = "MS_output_NC8_glc1"
@@ -242,21 +226,18 @@ while stop == 1:
 		time.sleep(3)
 	except:
 		show_error("Invalid file name. Try again.")
-<<<<<<< HEAD
+    
+    # stop program option (position 6)
+    if pos == 6 and x == ord('\n'):
+	stop = 0
 
     # stop program option (position 6)
-=======
-
-    # stop program option (position 7)
-    
-
->>>>>>> eb09e70ac774e83ae72392ac6196930c669ce29d
-    if pos == 6 and x == ord('\n'):
+    if pos == 7 and x == ord('\n'):
         stop = 0
         
     # highlight returns to the top of the list
     elif x == 258:
-        if pos < 6:
+        if pos < 7:
             pos += 1
         else:
             pos = 1
@@ -266,7 +247,7 @@ while stop == 1:
         if pos > 1:
             pos += -1
         else:
-            pos = 6
+            pos = 7
             
     # error code for pushing key besides up/down arrow key
     elif x != ord('\n'):
