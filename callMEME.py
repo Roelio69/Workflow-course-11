@@ -1,3 +1,4 @@
+# calls and runs MEME (motif search) from terminal to your five-character HANaccount
 import os
 import subprocess
 
