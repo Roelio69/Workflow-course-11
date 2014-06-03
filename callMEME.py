@@ -13,7 +13,7 @@ class class4():
 	command = "cd /sharing/students/MEME/bin/ ; ./meme "+path+" "+Parameters
 	subprocess.call(command, shell=True)
 
-	commandCopy = "cp -r /sharing/students/MEME/bin/meme_out" " "+path.replace(outputList[1],"")	
+	commandCopy = "cp -r /sharing/students/MEME/bin/meme_out "+path.replace(outputList[1],"")	
 	subprocess.call(commandCopy, shell=True)
 	
 	os.rename("meme_out", "output"+"("+outputList[1]+")")

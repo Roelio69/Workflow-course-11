@@ -1,9 +1,9 @@
 import re
 class class2():
-    def zoekOrthologen(self):
-        bestand1 = open("LP_DEG_glc_filtered.txt","r").readlines()
+    def zoekOrthologen(self, userInput, userOutput):
+        bestand1 = open(userInput,"r").readlines()
         bestand2 = open("LP_genes.txt", "r").readlines()
-        output2 = open("LP_genes_orthgenes.txt","w")
+        output2 = open(userOutput+".txt","w")
 
         for line in bestand1:
             for line2 in bestand2:

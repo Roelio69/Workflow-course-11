@@ -1,15 +1,15 @@
 import re
 class class3():
-    def motifSearch(self):
-        bestand3 = open("LP_genes_orthgenes.txt","r").readlines()
+    def motifSearch(self, userInput, userOutput, userOutput2, userOutput3, userOutput4):
+        bestand3 = open(userInput,"r").readlines()
         bestand4 = open("WCFS1_glc_1_tss.fa").readlines()
         bestand5 = open("NC8_glc_1_tss.fa").readlines()
         bestand6 = open("WCFS1_glc_2_tss.fa").readlines()
         bestand7 = open("NC8_glc_2_tss.fa").readlines()
-        output1 = open("WCFS1_glc_1_found.txt", "w")
-        output2 = open("NC8_glc_1_found.txt", "w")
-        output3 = open("WCFS1_glc_2_found.txt", "w")
-        output4 = open("NC8_glc_2_found.txt", "w")
+        output1 = open(userOutput+".txt", "w")
+        output2 = open(userOutput2+".txt", "w")
+        output3 = open(userOutput3+".txt", "w")
+        output4 = open(userOutput4+".txt", "w")
         
         for line in bestand3:
             line = line.split("|")
