@@ -1,4 +1,3 @@
-Installing help:
 Thank you for using our GitHub project!
 
 We recommend you to install this directory somewhere on your computer, where you can easily access it from the terminal (so don't have directory names without space's or the directory is located in the temp. folder).
