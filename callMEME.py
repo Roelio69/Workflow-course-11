@@ -11,7 +11,7 @@ class class4():
 
 	path = path.replace(outputList[0], outputList[1])
 	
-	command = "cd /sharing/students/MEME/bin/ ; ./meme "+path+" -dna -nmotifs 3 -minw 20 -maxw 50 -mod zoops -minsites 150 -maxsites 745"
+	command = "cd /sharing/students/MEME/bin/ ; ./meme "+path+" "+Parameters+" "
 	subprocess.call(command, shell=True)
 
 	commandCopy = "cp -r /sharing/students/MEME/bin/meme_out "+path.replace(outputList[1],"")	
