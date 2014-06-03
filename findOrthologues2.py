@@ -1,3 +1,4 @@
+# searches for orthologues in LP_genes.txt from L.Plantarum's WCFS1 and NC8 species
 import re
 class class2():
     def zoekOrthologen(self, userInput, userOutput):
