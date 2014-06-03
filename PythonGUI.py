@@ -13,7 +13,7 @@ def show_error(inputstring):
     screen = curses.initscr()
     screen.clear()
     screen.border(0)
-    screen.addstr(2,2, "the following error has been occurred: ", curses.A_BOLD)
+    screen.addstr(2,2, "the following error has occurred: ", curses.A_BOLD)
     screen.addstr(5,4, str(inputstring))
     screen.refresh()
     time.sleep(3)
@@ -94,12 +94,15 @@ while stop == 1:
         firstClass = class1()
         userInput = screen.getstr(6, 10, 60)
         userOutput = screen.getstr(11, 10, 60)
-        firstClass.filterLPs(userInput, userOutput)
-        screen.clear()
-        screen.border(0)
-        screen.addstr(2, 4, "Gene filter succes!")
-        screen.refresh()
-        time.sleep(3)
+	try:
+		firstClass.filterLPs(userInput, userOutput)
+		screen.clear()
+		screen.border(0)
+		screen.addstr(2, 4, "Gene filter succes!")
+		screen.refresh()
+		time.sleep(3)
+	except:
+		show_error("Invalid file name. Try again.")
 
     # Find Orthologues option (position 2)
     if pos == 2 and x == ord('\n'):
@@ -112,12 +115,15 @@ while stop == 1:
 	secondClass = class2()
         userInput = screen.getstr(6, 10, 60)
         userOutput = screen.getstr(11, 10, 60)
-        secondClass.zoekOrthologen(userInput, userOutput)
-        screen.clear()
-	screen.border(0)
-	screen.addstr(2, 4, "Find Orthologues succes!")
-	screen.refresh()
-	time.sleep(3)
+	try:
+		secondClass.zoekOrthologen(userInput, userOutput)
+		screen.clear()
+		screen.border(0)
+		screen.addstr(2, 4, "Find Orthologues succes!")
+		screen.refresh()
+		time.sleep(3)
+	except:
+		show_error("Invalid file name. Try again.")					
 
     # Motif Search option (position 3)
     if pos == 3 and x == ord('\n'):
@@ -137,13 +143,15 @@ while stop == 1:
         userOutput2 = screen.getstr(11, 10, 60)
         userOutput3 = screen.getstr(14, 10, 60)
         userOutput4 = screen.getstr(17, 10, 60)
-        thirdClass.motifSearch(userInput, userOutput, userOutput2, userOutput3, userOutput4)
-        screen.clear()
-	screen.border(0)
-	screen.addstr(2, 4, "Motif Search succes!")
-	screen.refresh()
-	time.sleep(3)
-
+	try:
+		thirdClass.motifSearch(userInput, userOutput, userOutput2, userOutput3, userOutput4)
+		screen.clear()
+		screen.border(0)
+		screen.addstr(2, 4, "Motif Search succes!")
+		screen.refresh()
+		time.sleep(3)
+	except:
+		show_error("Invalid file name. Try again.")
     # MEME option (position 4)
     if pos == 4 and x == ord('\n'):
         screen.clear()
@@ -155,6 +163,7 @@ while stop == 1:
 	screen.refresh()
 	fourthClass = class4()
 	userInput = screen.getstr(6, 10, 60)
+<<<<<<< HEAD
 	Parameters = screen.getstr(12, 10, 120)
 	fourthClass.callMEME(userInput, Parameters)
 	screen.clear()
@@ -163,6 +172,18 @@ while stop == 1:
 	screen.refresh()
 	time.sleep(3)
 
+=======
+	Parameters = screen.getstr(12, 10, 60)
+	try:
+		fourthClass.callMEME(userInput, Parameters)
+		screen.clear()
+		screen.border(0)
+		screen.addstr(2, 4, "MEME succes!")
+		screen.refresh()
+		time.sleep(3)
+	except:
+		show_error("Invalid file name. Try again.")
+>>>>>>> 94720f24ce827128621af54e334c1f9737842d20
     # running all the scripts option (position 5)
     if pos == 5 and x == ord('\n'):
         screen.clear()
@@ -173,22 +194,24 @@ while stop == 1:
         firstClass = class1()
         userInput = screen.getstr(6, 10, 60)
         userOutput = "GF_output"
-        firstClass.filterLPs(userInput, userOutput)
-        secondClass = class2()
-        userOutput2 = "FO_output"
-        secondClass.zoekOrthologen(userOutput+".txt", userOutput2)
-        thirdClass = class3()
-        userOutput3 = "MS_output_WCFS1_glc1"
-        userOutput4 = "MS_output_NC8_glc1"
-        userOutput5 = "MS_output_WCFS1_glc2"
-        userOutput6 = "MS_output_NC8_glc2"
-        thirdClass.motifSearch(userOutput2+".txt", userOutput3, userOutput4, userOutput5, userOutput6)
-        screen.clear()
-	screen.border(0)
-	screen.addstr(2, 4, "Run all the scripts succes!")
-	screen.refresh()
-        time.sleep(3)
-
+	try:
+		firstClass.filterLPs(userInput, userOutput)
+		secondClass = class2()
+		userOutput2 = "FO_output"
+		secondClass.zoekOrthologen(userOutput+".txt", userOutput2)
+		thirdClass = class3()
+		userOutput3 = "MS_output_WCFS1_glc1"
+		userOutput4 = "MS_output_NC8_glc1"
+		userOutput5 = "MS_output_WCFS1_glc2"
+		userOutput6 = "MS_output_NC8_glc2"
+		thirdClass.motifSearch(userOutput2+".txt", userOutput3, userOutput4, userOutput5, userOutput6)
+		screen.clear()
+		screen.border(0)
+		screen.addstr(2, 4, "Run all the scripts succes!")
+		screen.refresh()
+		time.sleep(3)
+	except:
+		show_error("Invalid file name. Try again.")
     # stop program option (position 6)
     if pos == 6 and x == ord('\n'):
         stop = 0
@@ -208,9 +231,9 @@ while stop == 1:
             pos = 6
             
     # error code for pushing key besides up/down arrow key
-    elif x != ord('\n'):
-        curses.flash()
-        show_error('Invalid Key, try the up and down arrow keys...')
+    #elif x != ord('\n'):
+    #    curses.flash()
+    #    show_error('Invalid Key, try the up and down arrow keys...')
 
 
 curses.endwin()
