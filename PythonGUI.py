@@ -1,5 +1,6 @@
 # Course 11 group 3 Python 2.7 GUI program
 # all used imports
+import os
 from os import system
 import curses
 import time
@@ -66,9 +67,9 @@ while stop == 1:
     else:
         screen.addstr(10,4, "6 - Script selection", n)
     if pos == 7:
-        screen.addstr(10,4, "7 - Exit", h)
+        screen.addstr(11,4, "7 - Exit", h)
     else:
-        screen.addstr(10,4, "7 - Exit", n)
+        screen.addstr(11,4, "7 - Exit", n)
     screen.refresh()
 
     
@@ -86,6 +87,8 @@ while stop == 1:
         pos = 5
     elif x == ord('6'):
         pos = 6
+    elif x == ord('7'):
+        pos = 7
 
     # Gene Finder option (position 1)
     if pos == 1 and x == ord('\n'):
@@ -227,12 +230,19 @@ while stop == 1:
 	except:
 		show_error("Invalid file name. Try again.")
     
-    # stop program option (position 6)
+    # choose script option(position 6)
     if pos == 6 and x == ord('\n'):
-	stop = 0
+	screen.clear()
+	screen.border(0)
+        screen.addstr(2, 2, "Choose a script...")
+	screen.refresh()
+        time.sleep(3)
 
-    # stop program option (position 6)
+    # stop program option (position 7)
     if pos == 7 and x == ord('\n'):
+	filelist = [ f for f in os.listdir(".") if f.endswith(".pyc") ]
+	for f in filelist:
+    	    os.remove(f)
         stop = 0
         
     # highlight returns to the top of the list
@@ -256,4 +266,5 @@ while stop == 1:
 
 
 curses.endwin()
-system("cls")
+system("reset")
+system("clear")
