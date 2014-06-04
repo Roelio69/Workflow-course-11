@@ -93,12 +93,16 @@ def scriptMEME():
     userInput = screen.getstr(6, 10, 60)
     MEMEpath = screen.getstr(12, 10, 60)
     Parameters = screen.getstr(18, 10, 120)
-    fourthClass.callMEME(userInput, MEMEpath, Parameters)
-    screen.clear()
-    screen.border(0)
-    screen.addstr(2, 4, "MEME succes!")
-    screen.refresh()
-    time.sleep(3)
+    try:
+        fourthClass.callMEME(userInput, MEMEpath, Parameters)
+        screen.clear()
+        screen.border(0)
+        screen.addstr(2, 4, "MEME succes!")
+        screen.refresh()
+        time.sleep(3)
+    except:
+        curses.flash()
+        show_error("Invalid file name. Try again.")
     
 # returns the occured error def
 def show_error(inputstring):
@@ -269,19 +273,23 @@ while stop == 1:
         numbers = screen.getstr(6, 4, 20)
 	screen.refresh()
 	numbers = numbers.split()
-	for number in numbers:
-            screen.clear()
-            screen.border(0)
-            if int(number) == 1:
-                scriptGF()
-            if int(number) == 2:
-                scriptFO()
-            if int(number) == 3:
-                scriptMS()
-            if int(number) == 4:
-                scriptMEME()
-            screen.refresh()
-            time.sleep(3)
+	try:
+            for number in numbers:
+                screen.clear()
+                screen.border(0)
+                if int(number) == 1:
+                    scriptGF()
+                if int(number) == 2:
+                    scriptFO()
+                if int(number) == 3:
+                    scriptMS()
+                if int(number) == 4:
+                    scriptMEME()
+                screen.refresh()
+                time.sleep(3)
+        except:
+            curses.flash()
+	    show_error("Invalid number input. Try again.")
         screen.clear()
 	screen.border(0)
         screen.addstr(2, 2, "Thank you for using the choose script option!")
