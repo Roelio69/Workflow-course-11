@@ -58,7 +58,6 @@ def scriptSM():
     screen.addstr(4, 4, "Please enter a input file for Motif Search")
     screen.addstr(7, 4, "Please name the first output file (WCFS1_glc1)")
     screen.addstr(10, 4, "Please name the second output file (NC8_glc1)")
-    screen.addstr(9, 4, "Please fill in all the parameters for MEME")
     screen.addstr(13, 4, "Please name the third output file (WCFS1_glc2)")
     screen.addstr(16, 4, "Please name the last output file (NC8_glc2)")
     screen.refresh()
@@ -79,19 +78,24 @@ def scriptSM():
         curses.flash()
         show_error("Invalid file name. Try again.")
 
+
 def scriptMEME():
     screen.clear()
     screen.border(0)
     screen.addstr(2, 2, "This is MEME")
-    screen.addstr(4, 4, "Please enter a input file for MEME")
-    screen.addstr(9, 4, "Please fill in all the parameters for MEME")
-    screen.addstr(10, 4, "Examples: -dna -nmotif -minw -maxw -mod -minsites -maxsites")
+    screen.addstr(4, 4, "Please enter an input file for MEME")
+    screen.addstr(8, 4, "Please fill in the path to the MEME bin folder")
+    screen.addstr(9, 4, "Example: /username/meme/bin/")
+    screen.addstr(10, 4, "Type 'default' to use the linux MEME directory")
+    screen.addstr(14, 4, "Please fill in all the parameters for MEME")
+    screen.addstr(15, 4, "Examples: -dna -nmotif n -minw n -maxw n -mod ( oops| zoops)"+"\n"+"    -minsites n -maxsites n")
     screen.refresh()
     fourthClass = class4()
     userInput = screen.getstr(6, 10, 60)
-    Parameters = screen.getstr(12, 10, 120)
+    Path = screen.getstr(12, 10, 60)
+    Parameters = screen.getstr(17, 10, 120)
     try:
-	fourthClass.callMEME(userInput, Parameters)
+	fourthClass.callMEME(userInput, Path, Parameters)
 	screen.clear()
 	screen.border(0)
 	screen.addstr(2, 4, "MEME succes!")
@@ -131,7 +135,7 @@ while stop == 1:
     n = curses.A_NORMAL
     screen.clear()
     screen.border(0)
-    screen.addstr(2,2, "Bio-Informatics Pipeline", curses.A_STANDOUT)
+    screen.addstr(2,2, "MEME pipeline - Course 11", curses.A_STANDOUT)
     screen.addstr(4,2, "Please select an option using the up and down arrow key...", curses.A_BOLD)
     
     # Detect what's highlighted by the 'pos' variable.
@@ -210,7 +214,7 @@ while stop == 1:
         screen.clear()
 	screen.border(0)
         screen.addstr(2, 2, "Run all the scripts!")
-        screen.addstr(4, 4, "Please enter a input file for Gene Filter")
+        screen.addstr(4, 4, "Please enter an input file for Gene Filter")
         screen.refresh()
         firstClass = class1()
         userInput = screen.getstr(6, 10, 60)
@@ -247,7 +251,7 @@ while stop == 1:
 	    screen.clear()
 	    screen.border(0)
 	    screen.addstr(2, 2, "100% complete!")
-	    screen.addstr(4, 4, "Run all the scripts succes!")
+	    screen.addstr(4, 4, "Done!")
 	    screen.refresh()
 	    time.sleep(3)
 	except:
@@ -259,7 +263,7 @@ while stop == 1:
 	screen.clear()
 	screen.border(0)
         screen.addstr(2, 2, "")
-        screen.addstr(3, 2, "Type in numbers: 1, 2, 3 or 4")
+        screen.addstr(3, 2, "Type in numbers: 1, 2, 3 or 4 followed by a space.")
         screen.addstr(4, 2, "Example: 1 2 4")
         numbers = screen.getstr(6, 4, 20)
 	screen.refresh()
@@ -296,6 +300,7 @@ while stop == 1:
             screen.addstr(2+i, 2, lijst[i])
             screen.refresh()
         time.sleep(3)
+        lijst = []
                 
     # stop program option (position 8)
     if pos == 8 and x == ord('\n'):
