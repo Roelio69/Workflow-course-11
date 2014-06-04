@@ -27,6 +27,7 @@ def scriptGF():
 	screen.refresh()
 	time.sleep(3)
     except:
+        curses.flash()
 	show_error("Invalid file name. Try again.")
 
 def scriptFO():
@@ -47,6 +48,7 @@ def scriptFO():
 	screen.refresh()
 	time.sleep(3)
     except:
+        curses.flash()
 	show_error("Invalid file name. Try again.")	
     
 def scriptSM():
@@ -74,6 +76,7 @@ def scriptSM():
 	screen.refresh()
 	time.sleep(3)
     except:
+        curses.flash()
         show_error("Invalid file name. Try again.")
 
 def scriptMEME():
@@ -95,6 +98,7 @@ def scriptMEME():
 	screen.refresh()
 	time.sleep(3)
     except:
+        curses.flash()
 	show_error("Invalid file name. Try again.") 
 
 # returns the occured error def
@@ -156,9 +160,9 @@ while stop == 1:
     else:
         screen.addstr(10,4, "6 - Script selection", n)
     if pos == 7:
-        screen.addstr(11,4, "7 - See all text files in directory", h)
+        screen.addstr(11,4, "7 - See all input text files in directory", h)
     else:
-        screen.addstr(11,4, "7 - See all text files in directory", n)
+        screen.addstr(11,4, "7 - See all input text files in directory", n)
     if pos == 8:
         screen.addstr(12,4, "8 - Exit", h)
     else:
@@ -247,6 +251,7 @@ while stop == 1:
 	    screen.refresh()
 	    time.sleep(3)
 	except:
+            curses.flash()
 	    show_error("Invalid file name. Try again.")
     
     # choose script option(position 6)
@@ -283,7 +288,7 @@ while stop == 1:
         path = os.path.realpath(__file__)
         path = path.replace("PythonGUI.py", "")
         for f in os.listdir(path):
-            if f.endswith(".txt"):
+            if f.endswith(".txt") and f != "readme.txt" and f != "LP_genes.txt":
                 lijst.append(f)
         screen.clear()
         screen.border(0)
@@ -319,6 +324,6 @@ while stop == 1:
         show_error('Invalid Key, try the up and down arrow keys...')
 
 curses.endwin()
-system("reset")
-system("clear")
-#system("cls")
+#system("reset")
+#system("clear")
+system("cls")
