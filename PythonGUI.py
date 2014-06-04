@@ -78,29 +78,28 @@ def scriptSM():
         curses.flash()
         show_error("Invalid file name. Try again.")
 
-
 def scriptMEME():
     screen.clear()
     screen.border(0)
     screen.addstr(2, 2, "This is MEME")
     screen.addstr(4, 4, "Please enter an input file for MEME")
+    screen.addstr(8, 4, "Please type in path to MEME's bin folder")
+    screen.addstr(9, 4, "Example: /username/MEME/bin/ (don't forget to type the '/' in front of the line and in the back")
+    screen.addstr(10, 4, "Type 'default' in for default MEME path in linux terminal")
     screen.addstr(14, 4, "Please fill in all the parameters for MEME")
     screen.addstr(15, 4, "Examples: -dna -nmotif n -minw n -maxw n -mod ( oops| zoops)"+"\n"+"    -minsites n -maxsites n")
     screen.refresh()
     fourthClass = class4()
     userInput = screen.getstr(6, 10, 60)
-    Parameters = screen.getstr(17, 10, 120)
-    try:
-	fourthClass.callMEME(userInput, Parameters)
-	screen.clear()
-	screen.border(0)
-	screen.addstr(2, 4, "MEME succes!")
-	screen.refresh()
-	time.sleep(3)
-    except:
-        curses.flash()
-	show_error("Invalid file name. Try again.") 
-
+    MEMEpath = screen.getstr(12, 10, 60)
+    Parameters = screen.getstr(18, 10, 120)
+    fourthClass.callMEME(userInput, MEMEpath, Parameters)
+    screen.clear()
+    screen.border(0)
+    screen.addstr(2, 4, "MEME succes!")
+    screen.refresh()
+    time.sleep(3)
+    
 # returns the occured error def
 def show_error(inputstring):
     screen = curses.initscr()
@@ -216,6 +215,11 @@ while stop == 1:
         userInput = screen.getstr(6, 10, 60)
         userOutput = "GF_output"
 	try:
+	    screen.clear()
+            screen.border(0)
+            screen.addstr(2, 2, "0% complete...")
+            screen.refresh()
+	    time.sleep(1)
             firstClass.filterLPs(userInput, userOutput)
             screen.clear()
             screen.border(0)
@@ -239,15 +243,16 @@ while stop == 1:
             screen.addstr(2, 2, "75% complete...")
             screen.refresh()
             fourthClass = class4()
-            Parameters = "-dna -nmotifs 3 -minw 20 -maxw 50 -mod zoops -minsites 150 -maxsites 745 "
-            fourthClass.callMEME(userOutput3+".txt", Parameters)
-            fourthClass.callMEME(userOutput4+".txt", Parameters)
-            fourthClass.callMEME(userOutput5+".txt", Parameters)
-            fourthClass.callMEME(userOutput6+".txt", Parameters)
+	    MEMEpath = "default"
+            Parameters = "-dna -nmotifs 1 -minw 20 -maxw 50 -mod zoops -minsites 150 -maxsites 745"
+            fourthClass.callMEME(userOutput3+".txt", MEMEpath, Parameters)
+            fourthClass.callMEME(userOutput4+".txt", MEMEpath, Parameters)
+            fourthClass.callMEME(userOutput5+".txt", MEMEpath, Parameters)
+            fourthClass.callMEME(userOutput6+".txt", MEMEpath, Parameters)
             screen.clear()
             screen.border(0)
             screen.addstr(2, 2, "100% complete!")
-            screen.addstr(4, 4, "Done!")
+            screen.addstr(4, 4, "Thank you for using the superscript!")
             screen.refresh()
             time.sleep(3)
 	except:
@@ -325,6 +330,6 @@ while stop == 1:
         show_error('Invalid Key, try the up and down arrow keys...')
 
 curses.endwin()
-#system("reset")
-#system("clear")
-system("cls")
+system("reset")
+system("clear")
+#system("cls")
