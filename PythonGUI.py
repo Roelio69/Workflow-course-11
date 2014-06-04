@@ -84,18 +84,14 @@ def scriptMEME():
     screen.border(0)
     screen.addstr(2, 2, "This is MEME")
     screen.addstr(4, 4, "Please enter an input file for MEME")
-    screen.addstr(8, 4, "Please fill in the path to the MEME bin folder")
-    screen.addstr(9, 4, "Example: /username/meme/bin/")
-    screen.addstr(10, 4, "Type 'default' to use the linux MEME directory")
     screen.addstr(14, 4, "Please fill in all the parameters for MEME")
     screen.addstr(15, 4, "Examples: -dna -nmotif n -minw n -maxw n -mod ( oops| zoops)"+"\n"+"    -minsites n -maxsites n")
     screen.refresh()
     fourthClass = class4()
     userInput = screen.getstr(6, 10, 60)
-    Path = screen.getstr(12, 10, 60)
     Parameters = screen.getstr(17, 10, 120)
     try:
-	fourthClass.callMEME(userInput, Path, Parameters)
+	fourthClass.callMEME(userInput, Parameters)
 	screen.clear()
 	screen.border(0)
 	screen.addstr(2, 4, "MEME succes!")
@@ -235,25 +231,25 @@ while stop == 1:
             thirdClass = class3()
             userOutput3 = "MS_output_WCFS1_glc1"
             userOutput4 = "MS_output_NC8_glc1"
-	    userOutput5 = "MS_output_WCFS1_glc2"
-	    userOutput6 = "MS_output_NC8_glc2"
-	    thirdClass.motifSearch(userOutput2+".txt", userOutput3, userOutput4, userOutput5, userOutput6)
-	    screen.clear()
-	    screen.border(0)
+            userOutput5 = "MS_output_WCFS1_glc2"
+            userOutput6 = "MS_output_NC8_glc2"
+            thirdClass.motifSearch(userOutput2+".txt", userOutput3, userOutput4, userOutput5, userOutput6)
+            screen.clear()
+            screen.border(0)
             screen.addstr(2, 2, "75% complete...")
-	    screen.refresh()
-	    fourthClass = class4()
-	    Parameters = "-dna -nmotifs 3 -minw 20 -maxw 50 -mod zoops -minsites 150 -maxsites 745 "
-	    fourthClass.callMEME(userOutput3+".txt", Parameters)
-	    fourthClass.callMEME(userOutput4+".txt", Parameters)
-	    fourthClass.callMEME(userOutput5+".txt", Parameters)
-	    fourthClass.callMEME(userOutput6+".txt", Parameters)
-	    screen.clear()
-	    screen.border(0)
-	    screen.addstr(2, 2, "100% complete!")
-	    screen.addstr(4, 4, "Done!")
-	    screen.refresh()
-	    time.sleep(3)
+            screen.refresh()
+            fourthClass = class4()
+            Parameters = "-dna -nmotifs 3 -minw 20 -maxw 50 -mod zoops -minsites 150 -maxsites 745 "
+            fourthClass.callMEME(userOutput3+".txt", Parameters)
+            fourthClass.callMEME(userOutput4+".txt", Parameters)
+            fourthClass.callMEME(userOutput5+".txt", Parameters)
+            fourthClass.callMEME(userOutput6+".txt", Parameters)
+            screen.clear()
+            screen.border(0)
+            screen.addstr(2, 2, "100% complete!")
+            screen.addstr(4, 4, "Done!")
+            screen.refresh()
+            time.sleep(3)
 	except:
             curses.flash()
 	    show_error("Invalid file name. Try again.")
