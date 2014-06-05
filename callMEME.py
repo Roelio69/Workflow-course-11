@@ -12,12 +12,12 @@ class class4():
 
 	path = path.replace(outputList[0], outputList[1])
 
-	command = "cd "+MEMEpath+" ; ./meme "+path+" "+Parameters
+	command = "cd "+MEMEpath+" ; ./meme "+path+" -oc "+path.replace(outputList[1], "output")+" "+Parameters
 	subprocess.call(command, shell=True)
 
-	commandCopy = "mv -f "+MEMEpath+"meme_out "+path.replace(outputList[1],"")	
-	subprocess.call(commandCopy, shell=True)
+	#commandCopy = "mv -f "+MEMEpath+"meme_out "+path.replace(outputList[1],"")	
+	#subprocess.call(commandCopy, shell=True)
 	
-        os.rename("meme_out", "output"+"("+outputList[1]+")")
+        os.rename("output", "output"+"("+outputList[1]+")")
 
 # /sharing/students/MEME/bin/

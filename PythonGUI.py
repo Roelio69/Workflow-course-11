@@ -84,23 +84,24 @@ def scriptMEME():
     screen.addstr(2, 2, "This is MEME")
     screen.addstr(4, 4, "Please enter an input file for MEME")
     screen.addstr(8, 4, "Please type in path to MEME's bin folder")
-    screen.addstr(9, 4, "Example: /username/MEME/bin/ (don't forget to type the '/' in front of the line and in the back")
-    screen.addstr(10, 4, "Type 'default' in for default MEME path in linux terminal")
-    screen.addstr(14, 4, "Please fill in all the parameters for MEME")
-    screen.addstr(15, 4, "Examples: -dna -nmotif n -minw n -maxw n -mod ( oops| zoops)"+"\n"+"    -minsites n -maxsites n")
+    screen.addstr(9, 4, "Example: /username/MEME/bin/")
+    screen.addstr(13, 4, "Please fill in all the parameters for MEME")
+    screen.addstr(14, 4, "Example: -dna -nmotifs 3 -minw 20 -maxw 50 -mod zoops -minsites 150 -maxsites 745")
     screen.refresh()
     fourthClass = class4()
     userInput = screen.getstr(6, 10, 60)
-    MEMEpath = screen.getstr(12, 10, 60)
-    Parameters = screen.getstr(18, 10, 120)
-    
-    fourthClass.callMEME(userInput, MEMEpath, Parameters)
-    screen.clear()
-    screen.border(0)
-    screen.addstr(2, 4, "MEME succes!")
-    screen.refresh()
-    time.sleep(3)
-    
+    MEMEpath = screen.getstr(11, 10, 60)
+    Parameters = screen.getstr(16, 10, 120)
+    try:
+    	fourthClass.callMEME(userInput, MEMEpath, Parameters)
+    	screen.clear()
+    	screen.border(0)
+    	screen.addstr(2, 4, "MEME succes!")
+    	screen.refresh()
+    	time.sleep(3)
+    except:
+        curses.flash()
+        show_error("Invalid file name. Try again.")
     
 # returns the occured error def
 def show_error(inputstring):
