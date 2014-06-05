@@ -93,16 +93,14 @@ def scriptMEME():
     userInput = screen.getstr(6, 10, 60)
     MEMEpath = screen.getstr(12, 10, 60)
     Parameters = screen.getstr(18, 10, 120)
-    try:
-        fourthClass.callMEME(userInput, MEMEpath, Parameters)
-        screen.clear()
-        screen.border(0)
-        screen.addstr(2, 4, "MEME succes!")
-        screen.refresh()
-        time.sleep(3)
-    except:
-        curses.flash()
-        show_error("Invalid file name. Try again.")
+    
+    fourthClass.callMEME(userInput, MEMEpath, Parameters)
+    screen.clear()
+    screen.border(0)
+    screen.addstr(2, 4, "MEME succes!")
+    screen.refresh()
+    time.sleep(3)
+    
     
 # returns the occured error def
 def show_error(inputstring):
