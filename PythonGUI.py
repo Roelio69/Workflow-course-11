@@ -213,9 +213,11 @@ while stop == 1:
 	screen.border(0)
         screen.addstr(2, 2, "Run all the scripts!")
         screen.addstr(4, 4, "Please enter an input file for Gene Filter")
+        screen.addstr(9, 4, "Please type in path to MEME's bin folder")
         screen.refresh()
         firstClass = class1()
         userInput = screen.getstr(6, 10, 60)
+        MEMEpath = screen.getstr(11, 10, 60)
         userOutput = "GF_output"
 	try:
 	    screen.clear()
@@ -246,7 +248,6 @@ while stop == 1:
             screen.addstr(2, 2, "75% complete...")
             screen.refresh()
             fourthClass = class4()
-	    MEMEpath = "default"
             Parameters = "-dna -nmotifs 1 -minw 20 -maxw 50 -mod zoops -minsites 150 -maxsites 745"
             fourthClass.callMEME(userOutput3+".txt", MEMEpath, Parameters)
             fourthClass.callMEME(userOutput4+".txt", MEMEpath, Parameters)
@@ -268,8 +269,12 @@ while stop == 1:
 	screen.border(0)
         screen.addstr(2, 2, "")
         screen.addstr(3, 2, "Type in numbers: 1, 2, 3 or 4 followed by a space.")
-        screen.addstr(4, 2, "Example: 1 2 4")
-        numbers = screen.getstr(6, 4, 20)
+        screen.addstr(4, 2, "1 = Gene Finder")
+        screen.addstr(5, 2, "2 = Find Orthologues")
+        screen.addstr(6, 2, "3 = Motif Search")
+        screen.addstr(7, 2, "4 = MEME")
+        screen.addstr(8, 2, "Example: 1 2 4")
+        numbers = screen.getstr(10, 4, 20)
 	screen.refresh()
 	numbers = numbers.split()
 	try:
