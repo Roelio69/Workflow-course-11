@@ -14,10 +14,5 @@ class class4():
 
 	command = "cd "+MEMEpath+" ; ./meme "+path+" -oc "+path.replace(outputList[1], "output")+" "+Parameters
 	subprocess.call(command, shell=True)
-
-	#commandCopy = "mv -f "+MEMEpath+"meme_out "+path.replace(outputList[1],"")	
-	#subprocess.call(commandCopy, shell=True)
 	
         os.rename("output", "output"+"("+outputList[1]+")")
-
-# /sharing/students/MEME/bin/
